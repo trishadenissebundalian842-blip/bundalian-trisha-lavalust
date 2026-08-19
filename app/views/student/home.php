@@ -93,9 +93,9 @@
     </div>
 
     <div class="button-container">
-        <a href="<?= strpos($_SERVER['HTTP_HOST'], 'localhost') !== false ? '/lavalust/student/profile' : '/student/profile' ?>" class="profile-button">
-            VIEW OTHER INFORMATION
-        </a>
+      <a href="<?= site_url('student/profile') ?>" class="profile-button">
+        VIEW STUDENT PROFILE
+     </a>
     </div>
 
 </div>
