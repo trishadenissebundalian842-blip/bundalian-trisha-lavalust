@@ -23,7 +23,7 @@ class StudentMiddleware
                     before viewing this profile.
                 </p>
 
-                <a href='/lavalust/student' style='
+                <a href='" . (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false ? '/lavalust/student' : '/student') . "' style='
                     display: inline-block;
                     margin-top: 15px;
                     padding: 10px 20px;

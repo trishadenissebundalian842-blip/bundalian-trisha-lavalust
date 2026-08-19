@@ -93,8 +93,8 @@
     </div>
 
     <div class="button-container">
-        <a href="/lavalust/student/profile" class="profile-button">
-            VIEW STUDENT PROFILE
+        <a href="<?= strpos($_SERVER['HTTP_HOST'], 'localhost') !== false ? '/lavalust/student/profile' : '/student/profile' ?>" class="profile-button">
+            VIEW OTHER INFORMATION
         </a>
     </div>
 
