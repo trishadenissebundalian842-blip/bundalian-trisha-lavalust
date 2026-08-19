@@ -1,0 +1,38 @@
+<?php 
+defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed'); 
+ 
+class StudentController extends Controller 
+{ 
+    public function index() 
+    { 
+        $this->call->view('student/home'); 
+    } 
+ 
+    public function profile() 
+    { 
+        $student = [ 
+            'student_id' => 'MCC2024-00012', 
+            'name' => 'Trisha Denisse O. Bundalian', 
+            'course' => 'BS Information Technology', 
+            'year' => '3rd Year', 
+            'section' => 'F1', 
+            'email' => 'trishadenissebundalian842@gmail.com',
+            'address' => 'Baco, Oriental Mindoro',
+            'contact' => '09677503381',
+            'profile_description' => 'I am a BSIT student interested in web development and information technology.',
+            'skills' => [
+                'HTML',
+                'CSS',
+                'PHP',
+                'Database Management'
+            ],
+            'hobbies' => [
+                'Watching movies',
+                'Listening to music',
+                'Exploring technology'
+            ]
+        ]; 
+ 
+        $this->call->view('student/profile', $student); 
+    } 
+}
