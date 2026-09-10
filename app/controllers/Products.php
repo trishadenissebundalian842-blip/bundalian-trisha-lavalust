@@ -9,11 +9,20 @@ class Products extends Controller
         // SESSION AUTHENTICATION
         // Only authenticated users can access Products
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-            header('Location: /Lab_5/products-crud/public/auth/login');
+            header('Location: ' . $this->base_url() . '/auth/login');
             exit;
         }
 
         $this->call->model('ProductModel', 'product');
+    }
+
+    private function base_url()
+    {
+        $base = dirname($_SERVER['SCRIPT_NAME']);
+
+        return ($base === '/' || $base === '\\')
+            ? ''
+            : rtrim($base, '/\\');
     }
 
     // =========================
@@ -51,7 +60,7 @@ class Products extends Controller
 
         $this->product->insert($data);
 
-        header('Location: /Lab_5/products-crud/public/products');
+        header('Location: ' . $this->base_url() . '/products');
         exit;
     }
 
@@ -81,7 +90,7 @@ class Products extends Controller
 
         $this->product->update($id, $data);
 
-        header('Location: /Lab_5/products-crud/public/products');
+        header('Location: ' . $this->base_url() . '/products');
         exit;
     }
 
@@ -93,7 +102,7 @@ class Products extends Controller
     {
         $this->product->delete($id);
 
-        header('Location: /Lab_5/products-crud/public/products');
+        header('Location: ' . $this->base_url() . '/products');
         exit;
     }
 }
