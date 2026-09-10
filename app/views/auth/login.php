@@ -114,7 +114,7 @@
         </div>
     <?php endif; ?>
 
-    <form action="/Lab_5/products-crud/public/auth/login" method="POST">
+    <form action="" method="POST">
 
         <label>Username:</label>
         <input
