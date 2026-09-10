@@ -1,5 +1,21 @@
 <?php
 define('PREVENT_DIRECT_ACCESS', TRUE);
+
+/*
+ * ------------------------------------------------------
+ * Load .env file
+ * ------------------------------------------------------
+ */
+$envPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env';
+if (file_exists($envPath)) {
+    foreach (file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        $line = trim($line);
+        if ($line === '' || strpos($line, '#') === 0) continue;
+        if (strpos($line, '=') === false) continue;
+        list($key, $value) = explode('=', $line, 2);
+        putenv(trim($key) . '=' . trim($value));
+    }
+}
 /**
  * ------------------------------------------------------------------
  * LavaLust - an opensource lightweight PHP MVC Framework
