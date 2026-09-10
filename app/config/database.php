@@ -59,7 +59,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 $database['main'] = [
     'driver'   => 'mysql',
-    'hostname' => getenv('DB_HOST'),
+    'hostname' => '143.244.134.90',
     'port'     => getenv('DB_PORT'),
     'username' => getenv('DB_USERNAME'),
     'password' => getenv('DB_PASSWORD'),
