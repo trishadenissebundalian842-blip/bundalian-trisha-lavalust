@@ -35,33 +35,35 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  */
 
 /*
-| -------------------------------------------------------------------
-|  Config Files
-| -------------------------------------------------------------------
+|--------------------------------------------------------------------------
+| Config Files
+|--------------------------------------------------------------------------
+|
 | This file is for setting-up default settings.
 |
 */
 
 /*
-| -------------------------------------------------------------------
-|  Your Own Configs
-| -------------------------------------------------------------------
+|--------------------------------------------------------------------------
+| Your Own Configs
+|--------------------------------------------------------------------------
+|
 | For easy access on your config, just put them below
 | You can simply get configs using config_item() function anywhere
 | My Configs:
 */
 
 /*
-| -------------------------------------------------------------------
+|--------------------------------------------------------------------------
 | LavaLust Version
-| -------------------------------------------------------------------
+|--------------------------------------------------------------------------
 */
 $config['version']                 = '4.6.0';
 
 /*
-| -------------------------------------------------------------------
+|--------------------------------------------------------------------------
 | Default Environment
-| -------------------------------------------------------------------
+|--------------------------------------------------------------------------
 | Values: development and production
 */
 $config['environment'] = getenv('APP_ENV') ?: 'development';
@@ -148,7 +150,7 @@ $config['composer_autoload']        = FALSE;
 | get a warning message.
 |
 | As a security measure you are STRONGLY encouraged to restrict URLs to
-| as few characters as possible.  By default only these are allowed: a-z 0-9~%.:_-
+| as few characters as possible. By default only these are allowed: a-z 0-9~%.:_-
 |
 | Leave blank to allow all characters -- but only if you are insane.
 |
@@ -175,21 +177,21 @@ $config['charset']					= 'UTF-8';
 | Error Views Directory Path
 |--------------------------------------------------------------------------
 |
-| app/views/errors/ directory.  Use a full server path with trailing slash.
+| app/views/errors/ directory. Use a full server path with trailing slash.
 |
 */
 $config['error_view_path']         	= '';
 
 /*
 |--------------------------------------------------------------------------
-| 404 Error Overide
+| 404 Error Override
 |--------------------------------------------------------------------------
 |
 | $config['404_override'] is use if you want to add custom 404 error page.
 |
-|	example: $confg['404_override'] = 'default/404'
+| example: $config['404_override'] = 'default/404'
 |
-|	if you have 'default folder' and '404.php file' inside error folder in view
+| if you have 'default folder' and '404.php file' inside error folder in view
 |
 */
 $config['404_override']       	    = '';
@@ -212,7 +214,8 @@ $config['language'] 				= 'en-US';
 |--------------------------------------------------------------------------
 |
 | This lets you specify which prefix should be used for your custom classes.
-| For example, if you have a class named MY_Controller, you would set this to 'MY_'.
+| For example, if you have a class named MY_Controller, you would set
+| $config['subclass_prefix'] = 'MY_';
 |
 */
 $config['subclass_prefix']          = 'MY_';
@@ -239,7 +242,6 @@ $config['sess_match_ip']           = FALSE;
 $config['sess_match_fingerprint']  = FALSE;
 $config['sess_time_to_update']     = 300;
 $config['sess_regenerate_destroy'] = FALSE;
-$config['sess_expire_on_close']    = FALSE;
 $config['max_invalid_attempts']    = 5;
 $config['invalid_window']          = 600;
 $config['lock_duration_invalid']   = 900;
@@ -255,7 +257,7 @@ $config['session_hmac_secret']     = getenv('APP_KEY') ?: '';
 | Cookies
 |--------------------------------------------------------------------------
 |
-|Settings for cookies.
+| Settings for cookies.
 |
 |--------------------------------------------------------------------------
 */
@@ -273,7 +275,7 @@ $config['cookie_samesite']         = 'Strict';
 |--------------------------------------------------------------------------
 |
 | Settings for Cache
-| Set your cache directory and cache expiration time here
+|
 | Default:
 |   $config['cache_dir'] = 'runtime/cache/';
 |   $config['cache_default_expires'] = 0;
@@ -308,7 +310,7 @@ $config['encryption_key']           = getenv('APP_KEY') ?: '';
 |
 | Default:
 |   $config['soft_delete']  = FALSE;
-|   $config['soft_delete_column'] = 'deleted_at;
+|   $config['soft_delete_column'] = 'deleted_at';
 |
 */
 $config['soft_delete']              = FALSE;
@@ -318,7 +320,9 @@ $config['soft_delete_column']       = 'deleted_at';
 |--------------------------------------------------------------------------
 | Created At and Updated At Column
 |--------------------------------------------------------------------------
+|
 | If you use the Model class, you can set the default created at and updated at column name here.
+|
 | Default:
 |   $config['created_at_column'] = 'created_at';
 |   $config['updated_at_column'] = 'updated_at';
@@ -347,4 +351,16 @@ $config['csrf_token_name']         = 'csrf_test_name';
 $config['csrf_cookie_name']        = 'csrf_cookie_name';
 $config['csrf_expire']             = 7200;
 $config['csrf_regenerate']         = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Middlewares
+|--------------------------------------------------------------------------
+|
+| Session-based authentication is handled directly in the controller.
+| No AuthMiddleware is registered here.
+|
+*/
+$config['middlewares'] = [];
+
 ?>
