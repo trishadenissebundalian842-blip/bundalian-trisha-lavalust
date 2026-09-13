@@ -151,6 +151,18 @@
 
 <body>
 
+<?php
+// Automatically detects the application base URL.
+// Works both on Laragon and Render.
+$base_url = dirname($_SERVER['SCRIPT_NAME']);
+
+if ($base_url === '/' || $base_url === '\\') {
+    $base_url = '';
+} else {
+    $base_url = rtrim($base_url, '/\\');
+}
+?>
+
 <div class="container">
 
     <div class="header">
@@ -159,15 +171,17 @@
 
     <div class="actions">
 
+        <!-- ADD PRODUCT -->
         <a
-            href="http://localhost/Lab_5/products-crud/public/products/create"
+            href="<?= $base_url ?>/products/create"
             class="btn add"
         >
             + Add Product
         </a>
 
+        <!-- LOGOUT -->
         <a
-            href="http://localhost/Lab_5/products-crud/public/auth/logout"
+            href="<?= $base_url ?>/auth/logout"
             class="btn logout"
         >
             Logout
@@ -188,54 +202,68 @@
                 <th>Action</th>
             </tr>
 
-            <?php foreach ($products as $product): ?>
+            <?php if (!empty($products)): ?>
 
-            <tr>
+                <?php foreach ($products as $product): ?>
 
-                <td>
-                    <?= $product['id']; ?>
-                </td>
+                <tr>
 
-                <td>
-                    <?= htmlspecialchars($product['product_name']); ?>
-                </td>
+                    <td>
+                        <?= $product['id']; ?>
+                    </td>
 
-                <td>
-                    <?= htmlspecialchars($product['description']); ?>
-                </td>
+                    <td>
+                        <?= htmlspecialchars($product['product_name']); ?>
+                    </td>
 
-                <td>
-                    ₱<?= number_format($product['price'], 2); ?>
-                </td>
+                    <td>
+                        <?= htmlspecialchars($product['description']); ?>
+                    </td>
 
-                <td>
-                    <?= $product['quantity']; ?>
-                </td>
+                    <td>
+                        ₱<?= number_format($product['price'], 2); ?>
+                    </td>
 
-                <td>
+                    <td>
+                        <?= $product['quantity']; ?>
+                    </td>
 
-                    <a
-                        href="http://localhost/Lab_5/products-crud/public/products/edit/<?= $product['id']; ?>"
-                        class="edit"
-                    >
-                        Edit
-                    </a>
+                    <td>
 
-                    |
+                        <!-- EDIT -->
+                        <a
+                            href="<?= $base_url ?>/products/edit/<?= $product['id']; ?>"
+                            class="edit"
+                        >
+                            Edit
+                        </a>
 
-                    <a
-                        href="http://localhost/Lab_5/products-crud/public/products/delete/<?= $product['id']; ?>"
-                        class="delete"
-                        onclick="return confirm('Delete this product?');"
-                    >
-                        Delete
-                    </a>
+                        |
 
-                </td>
+                        <!-- DELETE -->
+                        <a
+                            href="<?= $base_url ?>/products/delete/<?= $product['id']; ?>"
+                            class="delete"
+                            onclick="return confirm('Delete this product?');"
+                        >
+                            Delete
+                        </a>
 
-            </tr>
+                    </td>
 
-            <?php endforeach; ?>
+                </tr>
+
+                <?php endforeach; ?>
+
+            <?php else: ?>
+
+                <tr>
+                    <td colspan="6">
+                        No products found.
+                    </td>
+                </tr>
+
+            <?php endif; ?>
 
         </table>
 
