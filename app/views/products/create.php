@@ -103,6 +103,18 @@
 
 <body>
 
+<?php
+// Automatically detects the application base URL.
+// Works both on Laragon and Render.
+$base_url = dirname($_SERVER['SCRIPT_NAME']);
+
+if ($base_url === '/' || $base_url === '\\') {
+    $base_url = '';
+} else {
+    $base_url = rtrim($base_url, '/\\');
+}
+?>
+
 <div class="container">
 
     <div class="header">
@@ -110,7 +122,7 @@
     </div>
 
     <form
-        action="http://localhost/Lab_5/products-crud/public/products/store"
+        action="<?= $base_url ?>/products/store"
         method="POST"
     >
 
@@ -152,7 +164,7 @@
     </form>
 
     <a
-        href="http://localhost/Lab_5/products-crud/public/products"
+        href="<?= $base_url ?>/products"
         class="back"
     >
         Back to Products
